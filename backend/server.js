@@ -18,25 +18,25 @@ const db = mysql.createConnection({
 });
 
 // Connect to the database
-db.connect((err) => {
-  if (err) {
-    console.log(err);
-    return console.log("Connected to the MySQL database");
-  }
-});
+// db.connect((err) => {
+//   if (err) {
+//     console.log(err);
+//     return console.log("Connected to the MySQL database");
+//   }
+// });
 
 // Read all records
-app.get("/table", (req, res) => {
-  const sql = "SELECT * FROM silat";
-
-  db.query(sql, (err, results) => {
+app.get("/", (req, res) => {
+  const sql = "SELECT * FROM student1";
+  db.query(sql, (err, data) => {
     if (err) {
       console.error("Error fetching data:", err);
       res.status(500).json({ error: "Database error" });
       return;
     }
-    res.json(results);
+    res.json(data);
   });
+  // res.json("Hello from Backend");
 });
 
 // Start the server
